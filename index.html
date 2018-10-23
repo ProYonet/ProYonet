@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title id='Description'>With jqxGrid, you can export your data to Excel, XML, CSV, TSV, JSON, PDF and HTML.</title>
+    <meta name="description" content="jQuery Grid Data Export to Excel, PDF, XML, CSV, TSV, JSON and HTML" />
+    <link rel="stylesheet" href="../../jqwidgets/styles/jqx.base.css" type="text/css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css" /> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+    <script type="text/javascript" src="../../scripts/jquery-1.11.1.min.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/i18n/jquery.ui.datepicker-tr.min.js'></script> -->
+    <script type="text/javascript" src="../../jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxmenu.js"></script>
+    <!-- <script type="text/javascript" src="../../jqwidgets/jqxcheckbox.js"></script> -->
+    <script type="text/javascript" src="../../jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxdata.export.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxgrid.export.js"></script>
+    <script type="text/javascript" src="../../jqwidgets/jqxgrid.sort.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcalendar.js"></script>
+    <script type="text/javascript" src="../../scripts/demos.js"></script>
+    <!-- <script type="text/javascript" src="../../scripts/gettheme.js"></script> -->
+    <!-- <script type="text/javascript" src="generatedata.js"></script> -->
+    <script type="text/javascript">
+        // var startDate = "2018-10-18"
+
+        // $(document).ready(function () {
+        //     // prepare the data
+        //     var param1 = "?StartDate=" + startDate;
+        //     var url = "http://localhost:3000/api/yemekRaporuByDate" + param1;
+        //     var source =
+        //     {
+        //         // localdata: data,
+        //         datatype: "json",
+        //         datafields:
+        //             [
+        //                 { name: 'Type', type: 'string' },
+        //                 { name: 'Time', type: 'date' },
+        //                 { name: 'Reader', type: 'string' },
+        //                 { name: 'CardNumber', type: 'number' },
+        //                 { name: 'CompanyName', type: 'string' },
+        //                 { name: 'FullName', type: 'string' },
+        //                 { name: 'Topic', type: 'string' }
+        //             ],
+        //         url: url
+        //     };
+        //     var dataAdapter = new $.jqx.dataAdapter(source,
+        //         {
+        //             beforeLoadComplete: function (records) {
+        //                 records[0]['StartDate'] = "2018-10-18";
+        //                 return records;
+        //             }
+        //         }
+        //     );
+        //     // initialize jqxGrid
+        //     $("#grid").jqxGrid(
+        //         {
+        //             // width: getWidth('Grid'),
+        //             width: '1018 px',
+        //             height: '1000 px',
+        //             source: dataAdapter,
+        //             altrows: true,
+        //             sortable: true,
+        //             selectionmode: 'multiplecellsextended',
+        //             columns: [
+        //                 { text: 'Türü', datafield: 'Type', width: 90 },
+        //                 { text: 'Tarih', datafield: 'Time', width: 105, cellsformat: 'dd.MM.yyyy' },
+        //                 { text: 'Reader', datafield: 'Reader', width: 215 },
+        //                 { text: 'Kart Numarası', datafield: 'CardNumber', width: 70 }, //, columntype: 'checkbox', width: 67, cellsalign: 'center', align: 'center'
+        //                 { text: 'Şirket', datafield: 'CompanyName', width: 120, align: 'left', cellsalign: 'left' }, //, cellsformat: 'd'
+        //                 { text: 'Adı Soyadı', datafield: 'FullName', width: 200, align: 'left', cellsalign: 'left' },
+        //                 { text: 'Konu', datafield: 'Topic', width: 200, cellsalign: 'left', align: 'left', cellsformat: 'c2' }
+        //             ]
+        //         });
+        //     $("#excelExport").jqxButton();
+        //     $("#xmlExport").jqxButton();
+        //     $("#csvExport").jqxButton();
+        //     $("#tsvExport").jqxButton();
+        //     $("#htmlExport").jqxButton();
+        //     $("#jsonExport").jqxButton();
+        //     $("#pdfExport").jqxButton();
+        //     $("#excelExport").click(function () {
+        //         $("#grid").jqxGrid('exportdata', 'xls', 'jqxGrid');
+        //     });
+        //     $("#xmlExport").click(function () {
+        //         $("#grid").jqxGrid('exportdata', 'xml', 'jqxGrid');
+        //     });
+        //     $("#csvExport").click(function () {
+        //         $("#grid").jqxGrid('exportdata', 'csv', 'jqxGrid');
+        //     });
+        //     $("#tsvExport").click(function () {
+        //         $("#grid").jqxGrid('exportdata', 'tsv', 'jqxGrid');
+        //     });
+        //     $("#htmlExport").click(function () {
+        //         $("#grid").jqxGrid('exportdata', 'html', 'jqxGrid');
+        //     });
+        //     $("#jsonExport").click(function () {
+        //         $("#grid").jqxGrid('exportdata', 'json', 'jqxGrid');
+        //     });
+        //     $("#pdfExport").click(function () {
+        //         $("#grid").jqxGrid('exportdata', 'pdf', 'jqxGrid');
+        //     });
+        // });
+
+        // $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px' });
+
+        // $("#jqxDateTimeInput").on('change', function (event) {
+        //     startDate = event.args.date;
+        //     var type = event.args.type;
+        //     $('#grid').jqxGrid('updatebounddata', 'cells');
+        // });
+
+        // function removeURLParameter(url, parameter) {
+        //     //prefer to use l.search if you have a location/link object
+        //     var urlparts = url.split('?');
+        //     if (urlparts.length >= 2) {
+
+        //         var prefix = encodeURIComponent(parameter) + '=';
+        //         var pars = urlparts[1].split(/[&;]/g);
+
+        //         //reverse iteration as may be destructive
+        //         for (var i = pars.length; i-- > 0;) {
+        //             //idiom for string.startsWith
+        //             if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+        //                 pars.splice(i, 1);
+        //             }
+        //         }
+
+        //         url = urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
+        //         return url;
+        //     } else {
+        //         return url;
+        //     }
+        // }
+    </script>
+</head>
+
+<body class='default'>
+    <div id='jqxDateTimeInput'></div>
+    <!-- <input type="text" id="inputdatepicker"> -->
+    <div id="grid"></div>
+    <div style='margin-top: 20px;'>
+        <div style='float: left;'>
+            <input type="button" value="Export to Excel" id='excelExport' />
+            <br /><br />
+            <input type="button" value="Export to XML" id='xmlExport' />
+        </div>
+        <div style='margin-left: 10px; float: left;'>
+            <input type="button" value="Export to CSV" id='csvExport' />
+            <br /><br />
+            <input type="button" value="Export to TSV" id='tsvExport' />
+        </div>
+        <div style='margin-left: 10px; float: left;'>
+            <input type="button" value="Export to PDF" id='pdfExport' />
+            <br /><br />
+            <input type="button" value="Export to JSON" id='jsonExport' />
+        </div>
+    </div>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            var startDate = new Date();
+
+            $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px' });
+
+            $("#jqxDateTimeInput").on('change', function (event) {
+                startDate = event.args.date;
+                startDate = formatDate(startDate);
+                var type = event.args.type;
+                $('#grid').jqxGrid('updatebounddata', 'cells');
+            });
+
+
+            startDate = formatDate(startDate);
+
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('-');
+            }
+
+            // var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
+            //     var datarow = $("#grid").jqxGrid('getrowdata', row);
+
+            //     if (datarow.Type === 'Ziyaretçi') {
+            //         return '<span style=" margin: 4px; float: ' + columnproperties.cellsalign + '; color: #0000ff; ">' + value + '</span >';
+            //     }
+            //     else {
+            //         return '<span style=" margin: 4px; float: ' + columnproperties.cellsalign + '; color: #008000; ">' + value + '</span >';
+            //     }
+            // }
+
+            // prepare the data
+            // var param1 = "?StartDate=" + startDate;
+
+            var url = "http://localhost:3000/api/yemekRaporuByDate"; // + param1
+            var source =
+            {
+                // localdata: data,
+                datatype: "json",
+                datafields:
+                    [
+                        { name: 'Type', type: 'string' },
+                        { name: 'Time', type: 'date' },
+                        { name: 'Reader', type: 'string' },
+                        { name: 'CardNumber', type: 'number' },
+                        { name: 'CompanyName', type: 'string' },
+                        { name: 'FullName', type: 'string' },
+                        { name: 'Topic', type: 'string' }
+                    ],
+                url: url
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source,
+                {
+                    formatData: function (data) {
+                        $.extend(data, {
+                            StartDate: startDate
+                        });
+                        return data;
+                    }
+                }
+            );
+            // initialize jqxGrid
+            $("#grid").jqxGrid(
+                {
+                    // width: getWidth('Grid'),
+                    width: '1018 px',
+                    height: '1000 px',
+                    source: dataAdapter,
+                    altrows: true,
+                    sortable: true,
+                    selectionmode: 'multiplecellsextended',
+                    columns: [
+                        { text: 'Türü', datafield: 'Type', width: 90 },
+                        { text: 'Tarih', datafield: 'Time', width: 105, cellsformat: 'dd.MM.yyyy' },
+                        { text: 'Reader', datafield: 'Reader', width: 215 },
+                        { text: 'Kart Numarası', datafield: 'CardNumber', width: 70 }, //, columntype: 'checkbox', width: 67, cellsalign: 'center', align: 'center'
+                        { text: 'Şirket', datafield: 'CompanyName', width: 120, align: 'left', cellsalign: 'left' }, //, cellsformat: 'd'
+                        { text: 'Adı Soyadı', datafield: 'FullName', width: 200, align: 'left', cellsalign: 'left' },
+                        { text: 'Konu', datafield: 'Topic', width: 200, cellsalign: 'left', align: 'left', cellsformat: 'c2' }
+                    ]
+                });
+            $("#excelExport").jqxButton();
+            $("#xmlExport").jqxButton();
+            $("#csvExport").jqxButton();
+            $("#tsvExport").jqxButton();
+            // $("#htmlExport").jqxButton();
+            $("#jsonExport").jqxButton();
+            $("#pdfExport").jqxButton();
+            $("#excelExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'xls', 'Yemek Raporu');
+            });
+            $("#xmlExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'xml', 'jqxGrid');
+            });
+            $("#csvExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'csv', 'jqxGrid');
+            });
+            $("#tsvExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'tsv', 'jqxGrid');
+            });
+            // $("#htmlExport").click(function () {
+            //     $("#grid").jqxGrid('exportdata', 'html', 'jqxGrid');
+            // });
+            $("#jsonExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'json', 'jqxGrid');
+            });
+            $("#pdfExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'pdf', 'jqxGrid');
+            });
+        });
+
+    </script>
+</body>
+
+</html>
