@@ -209,7 +209,10 @@
             // prepare the data
             // var param1 = "?StartDate=" + startDate;
 
-            var url = "http://localhost:3000/api/yemekRaporuByDate"; // + param1
+            // var url = "http://localhost:3000/api/yemekRaporuByDate"; // + param1
+
+            var url = "http://192.168.1.7:8388/api/YemekRaporuParam"; // + param1
+
             var source =
             {
                 // localdata: data,
@@ -230,7 +233,7 @@
                 {
                     formatData: function (data) {
                         $.extend(data, {
-                            StartDate: startDate
+                            tarih: startDate
                         });
                         return data;
                     }
