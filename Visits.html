@@ -235,18 +235,11 @@
             $("#excelExport").click(function () {
                 $("#grid").jqxGrid('exportdata', 'xls', 'AllVisits');
             });
-            $("#xmlExport").click(function () {
-                $("#grid").jqxGrid('exportdata', 'xml', 'jqxGrid');
-            });
+        
             $("#csvExport").click(function () {
                 $("#grid").jqxGrid('exportdata', 'csv', 'jqxGrid');
             });
-            $("#tsvExport").click(function () {
-                $("#grid").jqxGrid('exportdata', 'tsv', 'jqxGrid');
-            });
-            $("#jsonExport").click(function () {
-                $("#grid").jqxGrid('exportdata', 'json', 'jqxGrid');
-            });
+           
             $("#pdfExport").click(function () {
                 $("#grid").jqxGrid('exportdata', 'pdf', 'jqxGrid');
             });
