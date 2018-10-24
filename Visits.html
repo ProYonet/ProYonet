@@ -23,6 +23,7 @@
     <script type="text/javascript" src="jqwidgets/jqxcalendar.js"></script>
     <script type="text/javascript" src="../../scripts/demos.js"></script>
     <script type="text/javascript" src="scripts/date.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxtooltip.js"></script>
 
     <script type="text/javascript">
         
@@ -40,17 +41,20 @@
     <div style='margin-top: 20px;'>
         <div style='float: left;'>
             <input type="button" value="Export to Excel" id='excelExport' />
-            <br /><br />
-            <input type="button" value="Export to XML" id='xmlExport' />
         </div>
         <div style='margin-left: 10px; float: left;'>
             <input type="button" value="Export to CSV" id='csvExport' />
-            <br /><br />
-            <input type="button" value="Export to TSV" id='tsvExport' />
         </div>
         <div style='margin-left: 10px; float: left;'>
             <input type="button" value="Export to PDF" id='pdfExport' />
-            <br /><br />
+        </div>
+        <div style='float: left;'>
+            <input type="button" value="Export to XML" id='xmlExport' />
+        </div>
+        <div style='margin-left: 10px; float: left;'>
+            <input type="button" value="Export to TSV" id='tsvExport' />
+        </div>
+        <div style='margin-left: 10px; float: left;'>
             <input type="button" value="Export to JSON" id='jsonExport' />
         </div>
     </div>
@@ -62,14 +66,17 @@
             var fromDate = new Date.today();
             var toDate = new Date.today().addDays(1);
 
-            $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px', selectionmode:'range' });
+            $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px', selectionMode:'range' });
             // $("#jqxDateTimeInputTo").jqxDateTimeInput({ width: '300px', height: '25px' });
 
             $("#jqxDateTimeInput").on('change', function (event) {
 
                 var selection = $("#jqxDateTimeInput").jqxDateTimeInput('getRange');
-                fromDate = event.args.date;
-               fromDate = formatDate(fromDate);
+                // fromDate = event.args.date;
+                fromDate = selection.from;
+                toDate = selection.to;
+                fromDate = formatDate(fromDate);
+                toDate = formatDate(toDate);
                 $('#grid').jqxGrid('updatebounddata', 'cells');
             });
 
@@ -82,6 +89,8 @@
 
             fromDate = formatDate(fromDate);
             toDate = formatDate(toDate);
+
+            $("#jqxDateTimeInput").jqxDateTimeInput('setRange', fromDate, toDate);
             
             // tarihi yyyy-mm-dd formatına çevirir.
             function formatDate(date) {
@@ -147,7 +156,7 @@
             $("#grid").jqxGrid(
                 {
                     width: '1018 px',
-                    height: '1000 px',
+                    height: '300 px',
                     source: dataAdapter,
                     altrows: true,
                     sortable: true,
