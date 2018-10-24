@@ -29,6 +29,8 @@
     <script type="text/javascript" src="jqwidgets/jqxdropdownlist.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxgrid.filter.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" src="jqwidgets/globalization/globalize.culture.tr-TR.js"></script>
 
     <script type="text/javascript">
 
@@ -111,6 +113,9 @@
             var toDate = new Date.today().addDays(1);
 
 
+             $("#jqxDateTimeInput").jqxDateTimeInput({
+                 culture:'tr-TR'
+             });
             //Tarih aralığı seçimi
             $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px', selectionMode: 'range' });
 
@@ -227,21 +232,21 @@
                     ]
                 });
             $("#excelExport").jqxButton();
-            $("#xmlExport").jqxButton();
+            // $("#xmlExport").jqxButton();
             $("#csvExport").jqxButton();
-            $("#tsvExport").jqxButton();
-            $("#jsonExport").jqxButton();
+            // $("#tsvExport").jqxButton();
+            // $("#jsonExport").jqxButton();
             $("#pdfExport").jqxButton();
             $("#excelExport").click(function () {
-                $("#grid").jqxGrid('exportdata', 'xls', 'AllVisits');
+                $("#grid").jqxGrid('exportdata', 'xls', 'Ziyaretciler-'+fromDate.replace(/\-/g,'.')+'-'+toDate.replace(/\-/g,'.'));
             });
         
             $("#csvExport").click(function () {
-                $("#grid").jqxGrid('exportdata', 'csv', 'jqxGrid');
+                $("#grid").jqxGrid('exportdata', 'csv', 'Ziyaretciler');
             });
            
             $("#pdfExport").click(function () {
-                $("#grid").jqxGrid('exportdata', 'pdf', 'jqxGrid');
+                $("#grid").jqxGrid('exportdata', 'pdf', 'Ziyaretciler');
             });
         });
 
