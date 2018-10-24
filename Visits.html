@@ -4,60 +4,113 @@
 <head>
     <title id='Description'>With jqxGrid, you can export your data to Excel, XML, CSV, TSV, JSON, PDF and HTML.</title>
     <meta name="description" content="jQuery Grid Data Export to Excel, PDF, XML, CSV, TSV, JSON and HTML" />
-    <link rel="stylesheet" href="../../jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="jqwidgets/styles/jqx.bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
-    <script type="text/javascript" src="../../scripts/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxbuttons.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxscrollbar.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxmenu.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxgrid.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxgrid.selection.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxgrid.columnsresize.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxdata.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxdata.export.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxgrid.export.js"></script>
-    <script type="text/javascript" src="../../jqwidgets/jqxgrid.sort.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdata.export.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.export.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.sort.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxdatetimeinput.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxcalendar.js"></script>
-    <script type="text/javascript" src="../../scripts/demos.js"></script>
+    <script type="text/javascript" src="scripts/demos.js"></script>
     <script type="text/javascript" src="scripts/date.js"></script>
     <script type="text/javascript" src="jqwidgets/jqxtooltip.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.filter.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxlistbox.js"></script>
 
     <script type="text/javascript">
-        
-        
+
+
         //     //prefer to use l.search if you have a location/link object
         //         //reverse iteration as may be destructive
-              
+
     </script>
+    <style>
+        .container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto
+    }
+
+    @media (min-width:768px) {
+        .container {
+            width: 750px
+        }
+    }
+
+    @media (min-width:992px) {
+        .container {
+            width: 970px
+        }
+    }
+
+    @media (min-width:1300px) {
+        .container {
+            width: 1300px
+        }
+    }
+
+    .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto
+    }
+    </style>
 </head>
 
-<body class='default' style="text-align: center"> 
-    <div id='jqxDateTimeInput'></div>
-    <div id='jqxDateTimeInputTo'></div>
-    <div id="grid" style="text-align: center"></div>
-    <div style='margin-top: 20px;'>
-        <div style='float: left;'>
-            <input type="button" value="Export to Excel" id='excelExport' />
+<body class='default'>
+
+    <div class="container">
+        <div class="row">
+            <div class="content">
+                <div class="row container">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div id='jqxDateTimeInput' style='margin-bottom: 20px;'></div>
+                        <!-- <div id='jqxDateTimeInputTo'></div> -->
+                        <div id="grid" style="width: 100%; height: 100%;" class="jqx-center-align"></div>
+                        <div style='margin-top: 20px;'>
+                            <div style='float: left;'>
+                                <input type="button" value="Export to Excel" id='excelExport' />
+                            </div>
+                            <div style='margin-left: 10px; float: left;'>
+                                <input type="button" value="Export to CSV" id='csvExport' />
+                            </div>
+                            <div style='margin-left: 10px; float: left;'>
+                                <input type="button" value="Export to PDF" id='pdfExport' />
+                            </div>
+                            <div style='margin-left: 10px; float: left;'>
+                                <input type="button" value="Export to XML" id='xmlExport' />
+                            </div>
+                            <div style='margin-left: 10px; float: left;'>
+                                <input type="button" value="Export to TSV" id='tsvExport' />
+                            </div>
+                            <div style='margin-left: 10px; float: left;'>
+                                <input type="button" value="Export to JSON" id='jsonExport' />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style='margin-left: 10px; float: left;'>
-            <input type="button" value="Export to CSV" id='csvExport' />
-        </div>
-        <div style='margin-left: 10px; float: left;'>
-            <input type="button" value="Export to PDF" id='pdfExport' />
-        </div>
-        <div style='margin-left: 10px; float: left;'>
-            <input type="button" value="Export to XML" id='xmlExport' />
-        </div>
-        <div style='margin-left: 10px; float: left;'>
-            <input type="button" value="Export to TSV" id='tsvExport' />
-        </div>
-        <div style='margin-left: 10px; float: left;'>
-            <input type="button" value="Export to JSON" id='jsonExport' />
-        </div>
+
     </div>
+
+
     <script type="text/javascript">
 
 
@@ -68,13 +121,13 @@
 
 
             //Tarih aralığı seçimi
-            $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px', selectionMode:'range' });
+            $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px', selectionMode: 'range' });
 
             $("#jqxDateTimeInput").on('change', function (event) {
 
                 //Seçilen tarih aralığı selection nesnesinin içine from ve to olarak geliyor
                 var selection = $("#jqxDateTimeInput").jqxDateTimeInput('getRange');
-                
+
                 fromDate = selection.from;
                 toDate = selection.to;
                 fromDate = formatDate(fromDate);
@@ -86,7 +139,7 @@
             toDate = formatDate(toDate);
 
             $("#jqxDateTimeInput").jqxDateTimeInput('setRange', fromDate, toDate);
-            
+
             // tarihi yyyy-mm-dd formatına çevirir.
             function formatDate(date) {
                 var d = new Date(date),
@@ -100,12 +153,12 @@
                 return [year, month, day].join('-');
             }
 
-            
+
             // prepare the data
-           
+
 
             var url = "http://192.168.1.7:8388/api/AllVisits"; // + param1
-        
+
 
             var source =
             {
@@ -131,7 +184,7 @@
                         { name: 'VisitorTypeID', type: 'int' },
                         { name: 'VisitorTypeName', type: 'string' },
                         { name: 'AccessCardNumber', type: 'string' }
-                       
+
 
                     ],
                 url: url
@@ -140,8 +193,8 @@
                 {
                     formatData: function (data) {
                         $.extend(data, {
-                           fromDate: fromDate,
-                           toDate: toDate
+                            fromDate: fromDate,
+                            toDate: toDate
                         });
                         return data;
                     }
@@ -150,28 +203,31 @@
             // initialize jqxGrid
             $("#grid").jqxGrid(
                 {
-                    width: '1070 px',
+                    // width: '1070 px',
+                    width: '100%',
                     height: '500 px',
+                    showfilterrow: true,
+                    filterable: true,
                     source: dataAdapter,
                     altrows: true,
                     sortable: true,
                     selectionmode: 'multiplecellsextended',
                     columns: [
                         // { text: 'VisitID', datafield: 'VisitID', width: 90 },
-                        { text: 'TC Kimlik', datafield: 'IdNumber', width: 115 },
-                        { text: 'Giriş Saati', datafield: 'EntryTime', width: 170, cellsformat: 'dd.MM.yyyy HH:mm:ss' },
-                        { text: 'Çıkış Saati', datafield: 'ExitTime', width: 170, cellsformat: 'dd.MM.yyyy HH:mm:ss' }, 
+                        { text: 'TC Kimlik', datafield: 'IdNumber' },
+                        { text: 'Giriş Saati', datafield: 'EntryTime', cellsformat: 'dd.MM.yyyy HH:mm:ss' },
+                        { text: 'Çıkış Saati', datafield: 'ExitTime', cellsformat: 'dd.MM.yyyy HH:mm:ss' },
                         // { text: 'CreateDateTime', datafield: 'CreateDateTime', width: 120, align: 'left', cellsalign: 'left' }, //, cellsformat: 'd'
                         // { text: 'CreateUserID', datafield: 'CreateUserID', width: 200, align: 'left', cellsalign: 'left' },
                         // { text: 'Topic', datafield: 'Topic', width: 200, cellsalign: 'left', align: 'left', cellsformat: 'c2' },
                         // { text: 'IsStaff', datafield: 'IsStaff', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'Ad', datafield: 'VisitorName', width: 130, align: 'left', cellsalign: 'left' },
-                        { text: 'Soyad', datafield: 'VisitorSurname', width: 130, align: 'left', cellsalign: 'left' },
+                        { text: '   Ad  ', datafield: 'VisitorName', align: 'left', cellsalign: 'left' },
+                        { text: 'Soyad', datafield: 'VisitorSurname', align: 'left', cellsalign: 'left' },
                         // { text: 'AccessCardName', datafield: 'AccessCardName', width: 120, align: 'left', cellsalign: 'left' },
                         // { text: 'AccessCardID', datafield: 'AccessCardID', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'Şirket', datafield: 'CompanyName', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'Kime', datafield: 'VisitedName', width: 150, align: 'left', cellsalign: 'left' },
-                        { text: 'Kart', datafield: 'AccessCardName', width: 80, align: 'left', cellsalign: 'left' }
+                        { text: 'Şirket', datafield: 'CompanyName', align: 'left', cellsalign: 'left' },
+                        { text: 'Kime', datafield: 'VisitedName', align: 'left', cellsalign: 'left' },
+                        { text: 'Kart', datafield: 'AccessCardName', align: 'left', cellsalign: 'left' }
                         // { text: 'CompanyID', datafield: 'CompanyID', width: 120, align: 'left', cellsalign: 'left' },
                         // { text: 'VisitorTypeID', datafield: 'VisitorTypeID', width: 120, align: 'left', cellsalign: 'left' },
 
@@ -180,7 +236,7 @@
                     ]
                 });
             $("#excelExport").jqxButton();
-            $("#xmlExport").jqxButton();    
+            $("#xmlExport").jqxButton();
             $("#csvExport").jqxButton();
             $("#tsvExport").jqxButton();
             $("#jsonExport").jqxButton();
