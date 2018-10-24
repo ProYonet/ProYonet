@@ -34,10 +34,10 @@
     </script>
 </head>
 
-<body class='default'>
+<body class='default' style="text-align: center"> 
     <div id='jqxDateTimeInput'></div>
     <div id='jqxDateTimeInputTo'></div>
-    <div id="grid"></div>
+    <div id="grid" style="text-align: center"></div>
     <div style='margin-top: 20px;'>
         <div style='float: left;'>
             <input type="button" value="Export to Excel" id='excelExport' />
@@ -150,31 +150,33 @@
             // initialize jqxGrid
             $("#grid").jqxGrid(
                 {
-                    width: '1018 px',
-                    height: '300 px',
+                    width: '1070 px',
+                    height: '500 px',
                     source: dataAdapter,
                     altrows: true,
                     sortable: true,
                     selectionmode: 'multiplecellsextended',
                     columns: [
-                        { text: 'VisitID', datafield: 'VisitID', width: 90 },
-                        { text: 'IdNumber', datafield: 'IdNumber', width: 105, cellsformat: 'dd.MM.yyyy' },
-                        { text: 'EntryTime', datafield: 'EntryTime', width: 215 },
-                        { text: 'ExitTime', datafield: 'ExitTime', width: 70 }, 
-                        { text: 'CreateDateTime', datafield: 'CreateDateTime', width: 120, align: 'left', cellsalign: 'left' }, //, cellsformat: 'd'
-                        { text: 'CreateUserID', datafield: 'CreateUserID', width: 200, align: 'left', cellsalign: 'left' },
-                        { text: 'Topic', datafield: 'Topic', width: 200, cellsalign: 'left', align: 'left', cellsformat: 'c2' },
-                        { text: 'VisitedName', datafield: 'VisitedName', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'IsStaff', datafield: 'IsStaff', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'VisitorName', datafield: 'VisitorName', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'VisitorSurname', datafield: 'VisitorSurname', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'AccessCardName', datafield: 'AccessCardName', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'AccessCardID', datafield: 'AccessCardID', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'CompanyName', datafield: 'CompanyName', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'CompanyID', datafield: 'CompanyID', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'VisitorTypeID', datafield: 'VisitorTypeID', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'VisitorTypeName', datafield: 'VisitorTypeName', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'AccessCardNumber', datafield: 'AccessCardNumber', width: 120, align: 'left', cellsalign: 'left' }
+                        // { text: 'VisitID', datafield: 'VisitID', width: 90 },
+                        { text: 'TC Kimlik', datafield: 'IdNumber', width: 115 },
+                        { text: 'Giriş Saati', datafield: 'EntryTime', width: 170, cellsformat: 'dd.MM.yyyy HH:mm:ss' },
+                        { text: 'Çıkış Saati', datafield: 'ExitTime', width: 170, cellsformat: 'dd.MM.yyyy HH:mm:ss' }, 
+                        // { text: 'CreateDateTime', datafield: 'CreateDateTime', width: 120, align: 'left', cellsalign: 'left' }, //, cellsformat: 'd'
+                        // { text: 'CreateUserID', datafield: 'CreateUserID', width: 200, align: 'left', cellsalign: 'left' },
+                        // { text: 'Topic', datafield: 'Topic', width: 200, cellsalign: 'left', align: 'left', cellsformat: 'c2' },
+                        // { text: 'IsStaff', datafield: 'IsStaff', width: 120, align: 'left', cellsalign: 'left' },
+                        { text: 'Ad', datafield: 'VisitorName', width: 130, align: 'left', cellsalign: 'left' },
+                        { text: 'Soyad', datafield: 'VisitorSurname', width: 130, align: 'left', cellsalign: 'left' },
+                        // { text: 'AccessCardName', datafield: 'AccessCardName', width: 120, align: 'left', cellsalign: 'left' },
+                        // { text: 'AccessCardID', datafield: 'AccessCardID', width: 120, align: 'left', cellsalign: 'left' },
+                        { text: 'Şirket', datafield: 'CompanyName', width: 120, align: 'left', cellsalign: 'left' },
+                        { text: 'Kime', datafield: 'VisitedName', width: 150, align: 'left', cellsalign: 'left' },
+                        { text: 'Kart', datafield: 'AccessCardName', width: 80, align: 'left', cellsalign: 'left' }
+                        // { text: 'CompanyID', datafield: 'CompanyID', width: 120, align: 'left', cellsalign: 'left' },
+                        // { text: 'VisitorTypeID', datafield: 'VisitorTypeID', width: 120, align: 'left', cellsalign: 'left' },
+
+                        // { text: 'VisitorTypeName', datafield: 'VisitorTypeName', width: 120, align: 'left', cellsalign: 'left' },
+                        // { text: 'AccessCardNumber', datafield: 'AccessCardNumber', width: 120, align: 'left', cellsalign: 'left' }
                     ]
                 });
             $("#excelExport").jqxButton();
