@@ -66,26 +66,21 @@
             var fromDate = new Date.today();
             var toDate = new Date.today().addDays(1);
 
+
+            //Tarih aralığı seçimi
             $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px', selectionMode:'range' });
-            // $("#jqxDateTimeInputTo").jqxDateTimeInput({ width: '300px', height: '25px' });
 
             $("#jqxDateTimeInput").on('change', function (event) {
 
+                //Seçilen tarih aralığı selection nesnesinin içine from ve to olarak geliyor
                 var selection = $("#jqxDateTimeInput").jqxDateTimeInput('getRange');
-                // fromDate = event.args.date;
+                
                 fromDate = selection.from;
                 toDate = selection.to;
                 fromDate = formatDate(fromDate);
                 toDate = formatDate(toDate);
                 $('#grid').jqxGrid('updatebounddata', 'cells');
             });
-
-            // $("#jqxDateTimeInputTo").on('change', function (event) {
-            //     toDate = event.args.date;
-            //    toDate = formatDate(toDate);
-            //     $('#grid').jqxGrid('updatebounddata', 'cells');
-            // });
-
 
             fromDate = formatDate(fromDate);
             toDate = formatDate(toDate);
