@@ -57,9 +57,9 @@
         }
     }
 
-    @media (min-width:1300px) {
+    @media (min-width:1350px) {
         .container {
-            width: 1300px
+            width: 1350px
         }
     }
 
@@ -92,15 +92,6 @@
                             </div>
                             <div style='margin-left: 10px; float: left;'>
                                 <input type="button" value="Export to PDF" id='pdfExport' />
-                            </div>
-                            <div style='margin-left: 10px; float: left;'>
-                                <input type="button" value="Export to XML" id='xmlExport' />
-                            </div>
-                            <div style='margin-left: 10px; float: left;'>
-                                <input type="button" value="Export to TSV" id='tsvExport' />
-                            </div>
-                            <div style='margin-left: 10px; float: left;'>
-                                <input type="button" value="Export to JSON" id='jsonExport' />
                             </div>
                         </div>
                     </div>
@@ -219,19 +210,19 @@
                         { text: 'Çıkış Saati', datafield: 'ExitTime', cellsformat: 'dd.MM.yyyy HH:mm:ss' },
                         // { text: 'CreateDateTime', datafield: 'CreateDateTime', width: 120, align: 'left', cellsalign: 'left' }, //, cellsformat: 'd'
                         // { text: 'CreateUserID', datafield: 'CreateUserID', width: 200, align: 'left', cellsalign: 'left' },
-                        // { text: 'Topic', datafield: 'Topic', width: 200, cellsalign: 'left', align: 'left', cellsformat: 'c2' },
                         // { text: 'IsStaff', datafield: 'IsStaff', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: '   Ad  ', datafield: 'VisitorName', align: 'left', cellsalign: 'left' },
-                        { text: 'Soyad', datafield: 'VisitorSurname', align: 'left', cellsalign: 'left' },
+                        { text: 'Ad      ', datafield: 'VisitorName', align: 'left', cellsalign: 'left' },
+                        { text: 'Soyad   ', datafield: 'VisitorSurname', align: 'left', cellsalign: 'left' },
                         // { text: 'AccessCardName', datafield: 'AccessCardName', width: 120, align: 'left', cellsalign: 'left' },
                         // { text: 'AccessCardID', datafield: 'AccessCardID', width: 120, align: 'left', cellsalign: 'left' },
-                        { text: 'Şirket', datafield: 'CompanyName', align: 'left', cellsalign: 'left' },
-                        { text: 'Kime', datafield: 'VisitedName', align: 'left', cellsalign: 'left' },
-                        { text: 'Kart', datafield: 'AccessCardName', align: 'left', cellsalign: 'left' }
+                        { text: 'Şirket  ', datafield: 'CompanyName', align: 'left', cellsalign: 'left' },
+                        { text: 'Kime       ', datafield: 'VisitedName', align: 'left', cellsalign: 'left' },
+                        { text: 'Konu       ', datafield: 'Topic',  cellsalign: 'left', align: 'left', cellsformat: 'c2' },
+                        { text: 'Kart', datafield: 'AccessCardName', align: 'left', cellsalign: 'left' },
                         // { text: 'CompanyID', datafield: 'CompanyID', width: 120, align: 'left', cellsalign: 'left' },
                         // { text: 'VisitorTypeID', datafield: 'VisitorTypeID', width: 120, align: 'left', cellsalign: 'left' },
 
-                        // { text: 'VisitorTypeName', datafield: 'VisitorTypeName', width: 120, align: 'left', cellsalign: 'left' },
+                        { text: 'Tipi', datafield: 'VisitorTypeName', align: 'left', cellsalign: 'left' }
                         // { text: 'AccessCardNumber', datafield: 'AccessCardNumber', width: 120, align: 'left', cellsalign: 'left' }
                     ]
                 });
