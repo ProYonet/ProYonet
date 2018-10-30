@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr-TR">
 
 <head>
-    <title id='Description'>With jqxGrid, you can export your data to Excel, XML, CSV, TSV, JSON, PDF and HTML.</title>
-    <meta name="description" content="jQuery Grid Data Export to Excel, PDF, XML, CSV, TSV, JSON and HTML" />
+    <title id='Description'>Ziyaretçi Raporu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Ziyaretçi Raporu" />
     <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
     <link rel="stylesheet" href="jqwidgets/styles/jqx.bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css" />
@@ -75,15 +76,14 @@
 </head>
 
 <body class='default'>
-
     <div class="container">
         <div class="row">
             <div class="content">
                 <div class="row container">
 
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1 style="text-align: center">Ziyaretçi Raporu</h1>
                         <div id='jqxDateTimeInput' style='margin-bottom: 20px;'></div>
-                        <!-- <div id='jqxDateTimeInputTo'></div> -->
                         <div id="grid" style="width: 100%; height: 100%;" class="jqx-center-align"></div>
                         <div style='margin-top: 20px;'>
                             <div style='float: left;'>
@@ -153,7 +153,7 @@
             // prepare the data
 
 
-            var url = "http://192.168.1.7:8388/api/AllVisits"; // + param1
+            var url = "http://192.168.1.7:8388/api/AllVisits"; // API
 
 
             var source =
@@ -199,7 +199,6 @@
             // initialize jqxGrid
             $("#grid").jqxGrid(
                 {
-                    // width: '1070 px',
                     width: '100%',
                     height: '500 px',
                     showfilterrow: true,
@@ -209,33 +208,21 @@
                     sortable: true,
                     selectionmode: 'multiplecellsextended',
                     columns: [
-                        // { text: 'VisitID', datafield: 'VisitID', width: 90 },
                         { text: 'TC Kimlik', datafield: 'IdNumber' },
                         { text: 'Giriş Saati', datafield: 'EntryTime', cellsformat: 'dd.MM.yyyy HH:mm:ss' },
                         { text: 'Çıkış Saati', datafield: 'ExitTime', cellsformat: 'dd.MM.yyyy HH:mm:ss' },
-                        // { text: 'CreateDateTime', datafield: 'CreateDateTime', width: 120, align: 'left', cellsalign: 'left' }, //, cellsformat: 'd'
-                        // { text: 'CreateUserID', datafield: 'CreateUserID', width: 200, align: 'left', cellsalign: 'left' },
-                        // { text: 'IsStaff', datafield: 'IsStaff', width: 120, align: 'left', cellsalign: 'left' },
                         { text: 'Ad      ', datafield: 'VisitorName', align: 'left', cellsalign: 'left' },
                         { text: 'Soyad   ', datafield: 'VisitorSurname', align: 'left', cellsalign: 'left' },
-                        // { text: 'AccessCardName', datafield: 'AccessCardName', width: 120, align: 'left', cellsalign: 'left' },
-                        // { text: 'AccessCardID', datafield: 'AccessCardID', width: 120, align: 'left', cellsalign: 'left' },
                         { text: 'Şirket  ', datafield: 'CompanyName', align: 'left', cellsalign: 'left' },
                         { text: 'Kime       ', datafield: 'VisitedName', align: 'left', cellsalign: 'left' },
                         { text: 'Konu       ', datafield: 'Topic',  cellsalign: 'left', align: 'left', cellsformat: 'c2' },
                         { text: 'Kart', datafield: 'AccessCardName', align: 'left', cellsalign: 'left' },
-                        // { text: 'CompanyID', datafield: 'CompanyID', width: 120, align: 'left', cellsalign: 'left' },
-                        // { text: 'VisitorTypeID', datafield: 'VisitorTypeID', width: 120, align: 'left', cellsalign: 'left' },
-
+                        
                         { text: 'Tipi', datafield: 'VisitorTypeName', align: 'left', cellsalign: 'left' }
-                        // { text: 'AccessCardNumber', datafield: 'AccessCardNumber', width: 120, align: 'left', cellsalign: 'left' }
                     ]
                 });
             $("#excelExport").jqxButton();
-            // $("#xmlExport").jqxButton();
             $("#csvExport").jqxButton();
-            // $("#tsvExport").jqxButton();
-            // $("#jsonExport").jqxButton();
             $("#pdfExport").jqxButton();
             $("#excelExport").click(function () {
                 $("#grid").jqxGrid('exportdata', 'xls', 'Ziyaretciler-'+fromDate.replace(/\-/g,'.')+'-'+toDate.replace(/\-/g,'.'));
