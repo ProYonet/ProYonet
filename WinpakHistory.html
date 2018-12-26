@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="tr-TR">
+
+<head>
+    <title id='Description'>Ziyaretçi Raporu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Ziyaretçi Raporu" />
+    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="jqwidgets/styles/jqx.bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="styles/bootstrap.min.css" type="text/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1 minimum-scale=1" />
+    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdata.export.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.export.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.sort.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdatetimeinput.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcalendar.js"></script>
+    <script type="text/javascript" src="scripts/demos.js"></script>
+    <script type="text/javascript" src="scripts/date.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxtooltip.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxgrid.filter.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="jqwidgets/globalization/globalize.js"></script>
+    <script type="text/javascript" src="jqwidgets/globalization/globalize.culture.tr-TR.js"></script>
+
+    <script type="text/javascript">
+
+
+        //     //prefer to use l.search if you have a location/link object
+        //         //reverse iteration as may be destructive
+
+    </script>
+    <style>
+        .container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto
+    }
+
+    @media (min-width:768px) {
+        .container {
+            width: 750px
+        }
+    }
+
+    @media (min-width:992px) {
+        .container {
+            width: 970px
+        }
+    }
+
+    @media (min-width:1350px) {
+        .container {
+            width: 1350px
+        }
+    }
+
+    .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto
+    }
+    </style>
+</head>
+
+<body class='default'>
+    <div class="container">
+        <div class="row">
+            <div class="content">
+                <div class="row container">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1 style="text-align: center">Ziyaretçi Raporu</h1>
+                        <div id='jqxDateTimeInput' style='margin-bottom: 20px;'></div>
+                        <div id='jqxdropdownlist'> </div>
+                        <div id="grid" style="width: 100%; height: 100%;" class="jqx-center-align"></div>
+                        <div style='margin-top: 20px;'>
+                            <div style='float: left;'>
+                                <input type="button" value="Export to Excel" id='excelExport' />
+                            </div>
+                            <div style='margin-left: 10px; float: left;'>
+                                <input type="button" value="Export to CSV" id='csvExport' />
+                            </div>
+                            <div style='margin-left: 10px; float: left;'>
+                                <input type="button" value="Export to PDF" id='pdfExport' />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            var fromDate = new Date.today();
+            var toDate = new Date.today().addDays(1);
+            var company = new String();
+            company ='CENTRUM';
+            
+            var companyUrl = "http://192.168.1.7:8388/api/HistoryCompany";
+            var companySource = {
+                datatype: "json",
+                datafields:
+                    [
+                        { name: 'HistoryCompanyName' }
+                    ],
+                url: companyUrl,
+                async: true
+            };
+
+            var companyDataAdapter = new $.jqx.dataAdapter(companySource, {
+                autoBind: true, async: true
+            });
+
+            $("#jqxdropdownlist").jqxDropDownList({ selectedIndex: 4, source: companyDataAdapter, displayMember: 'HistoryCompanyName', valueMember: 'HistoryCompanyName', width: '200px', height: '25px' });
+
+            $("#jqxdropdownlist").bind('select', function(event){
+                var args= event.args;
+                var item =$("#jqxdropdownlist").jqxDropDownList('getItem',args.index);
+                company=item.label;
+                $("#grid").jqxGrid("updatebounddata","cells");
+            })
+
+            $("#jqxDateTimeInput").jqxDateTimeInput({
+                culture: 'tr-TR'
+            });
+            //Tarih aralığı seçimi
+            $("#jqxDateTimeInput").jqxDateTimeInput({ width: '300px', height: '25px', selectionMode: 'range' });
+
+            $("#jqxDateTimeInput").on('change', function (event) {
+
+                //Seçilen tarih aralığı selection nesnesinin içine from ve to olarak geliyor
+                var selection = $("#jqxDateTimeInput").jqxDateTimeInput('getRange');
+
+                fromDate = selection.from;
+                toDate = selection.to;
+                fromDate = formatDate(fromDate);
+                toDate = formatDate(toDate);
+                $('#grid').jqxGrid('updatebounddata', 'cells');
+            });
+
+            fromDate = formatDate(fromDate);
+            toDate = formatDate(toDate);
+
+
+            $("#jqxDateTimeInput").jqxDateTimeInput('setRange', fromDate, toDate);
+
+            // tarihi yyyy-mm-dd formatına çevirir.
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2) month = '0' + month;
+                if (day.length < 2) day = '0' + day;
+
+                return [year, month, day].join('-');
+            }
+
+
+            // prepare the data
+
+
+            var url = "http://192.168.1.7:8388/api/WinpakHistory"; // API
+
+
+            var source =
+            {
+
+                datatype: "json",
+                datafields:
+                    [
+                        { name: 'RecordID', type: 'int' },
+                        { name: 'TimeStamp', type: 'date' },
+                        { name: 'GenTime', type: 'date' },
+                        { name: 'CardNumber', type: 'string' },
+                        { name: 'Reader', type: 'string' },
+                        { name: 'AdSoyad', type: 'string' },
+                        { name: 'Sirket', type: 'string' },
+                        { name: 'CardRecordID', type: 'int' },
+                        { name: 'CardHolderID', type: 'int' }
+                        // { name: 'VisitorName', type: 'string' },
+                        // { name: 'VisitorSurname', type: 'string' },
+                        // { name: 'AccessCardName', type: 'int' },
+                        // { name: 'AccessCardID', type: 'int' },
+                        // { name: 'CompanyName', type: 'string' },
+                        // { name: 'CompanyID', type: 'int' },
+                        // { name: 'VisitorTypeID', type: 'int' },
+                        // { name: 'VisitorTypeName', type: 'string' },
+                        // { name: 'AccessCardNumber', type: 'string' }
+
+
+                    ],
+                url: url
+            };
+            var dataAdapter = new $.jqx.dataAdapter(source,
+                {
+                    formatData: function (data) {
+                        $.extend(data, {
+                            fromDate: fromDate,
+                            toDate: toDate,
+                            company: company
+                        });
+                        return data;
+                    }
+                }
+            );
+            // initialize jqxGrid
+            $("#grid").jqxGrid(
+                {
+                    width: '100%',
+                    height: '500 px',
+                    showfilterrow: true,
+                    filterable: true,
+                    source: dataAdapter,
+                    altrows: true,
+                    sortable: true,
+                    selectionmode: 'multiplecellsextended',
+                    columns: [
+                        // { text: 'Kayıt', datafield: 'RecordID' },
+                        { text: 'Giriş Saati', datafield: 'TimeStamp', cellsformat: 'dd.MM.yyyy HH:mm:ss' },
+                        { text: 'Çıkış Saati', datafield: 'GenTime', cellsformat: 'dd.MM.yyyy HH:mm:ss' },
+                        { text: 'Kart Numarası', datafield: 'CardNumber', align: 'left', cellsalign: 'left' },
+                        { text: 'Okuyucu  ', datafield: 'Reader', align: 'left', cellsalign: 'left' },
+                        { text: 'Ad Soyad ', datafield: 'AdSoyad', align: 'left', cellsalign: 'left' },
+                        { text: 'Şirket  ', datafield: 'Sirket', align: 'left', cellsalign: 'left' },
+                        // { text: 'Kart Kaydı', datafield: 'CardRecordID',  cellsalign: 'left', align: 'left', cellsformat: 'c2' },
+                        // { text: 'Kart Sahibi', datafield: 'CardHolderID', align: 'left', cellsalign: 'left' }
+
+                        // { text: 'Tipi', datafield: 'VisitorTypeName', align: 'left', cellsalign: 'left' }
+                    ]
+                });
+            $("#excelExport").jqxButton();
+            $("#csvExport").jqxButton();
+            $("#pdfExport").jqxButton();
+            $("#excelExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'xls', 'Ziyaretciler-' + fromDate.replace(/\-/g, '.') + '-' + toDate.replace(/\-/g, '.'));
+            });
+
+            $("#csvExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'csv', 'Ziyaretciler');
+            });
+
+            $("#pdfExport").click(function () {
+                $("#grid").jqxGrid('exportdata', 'pdf', 'Ziyaretciler');
+            });
+        });
+
+    </script>
+</body>
+
+</html>
